@@ -1,0 +1,267 @@
+{
+     "billing_header": {
+         "caller_name": "BODS",
+         "billing_id": "ABCD",
+         "parent_billing_id": "",
+         "point_of_sale_id": 60020,
+         "be_gid": "1610000181",
+         "kid": "",
+         "company_id": 48576,
+         "document_type": "INVOICE",
+         "payment_due_date": "20240812",
+         "currency_code": "EUR",
+         "invoice_date": "20240812",
+         "invoicing_type": "STANDALONE",
+         "total_invoice_lines": 2,
+         "total_invoice_amount": 17.00,
+         "total_invoice_amount_due": 17.00,
+         "payment_information": {
+             "payment_method": "CREDIT CARD",
+             "card_type": "",
+             "payment_instrument_id": "",
+             "form_of_payment_id": "b6e0b734347a-0e61-4aed-8263-12312312",
+             "card_number_type": "4111XXXXXXXX1234",
+             "short_card_num": "1234"
+         },
+         "invoice_language_code": "FR",
+         "departure_date": "20240628"
+     },
+     "buyer_party": {
+         "buyer_address": {
+             "address1": "La Defense",
+             "postal_code": "92400",
+             "postal_district": "COURBEVOIE",
+             "country_code": "FR",
+             "country_name": "France"
+         },
+         "client_identifier": "2313213215",
+         "client_identifier_gdd": "828860",
+         "client_invoicing_type": "E"
+     },
+     "supplier_party": {
+         "travel_office_name": "EGENCIA",
+         "travel_office_address": {
+             "address1": "TOUR EGEE",
+             "postal_code": "92400",
+             "postal_district": "Courbevoie",
+             "country_code": "FR"
+         }
+     },
+     "billing_lines": [
+         {
+             "billing_line_information": {
+                 "action_type": "ISSUED",
+                 "markup": 0.00,
+                 "product_type": "CAR",
+                 "line_type": "PRODUCT",
+                 "merchant_model": "AGENCY",
+                 "resource_code": "LOC",
+                 "resource_for_vendor_calculation": "LOC",
+                 "payment_id": ""
+             },
+             "booking_information": {
+                 "booker_id": "7148650",
+                 "supplier_confirmation_number": "MCGWLJ",
+                 "booking_date": "20240628"
+             },
+             "price_information": {
+                 "total_price": {
+                     "amount": "0.00",
+                     "currency_code": "EUR"
+                 },
+                 "base_price": {
+                     "amount": "0.00",
+                     "currency_code": "EUR"
+                 },
+                 "tax_breakdown": [
+                     {
+                         "amount": "0.00",
+                         "currency_code": "EUR",
+                         "rate": "0.00",
+                         "business_posting_group": "NORMAL",
+                         "prod_posting_group": "SANSTVAHD"
+                     }
+                 ]
+             },
+             "ticket_information": {
+                 "ticket_number": "1108372496C",
+                 "geography_type": "INTERNATIONAL",
+                 "car_segments": [
+                     {
+                         "confirmation_number": "MCGWLJ",
+                         "pickup_date": "20240628",
+                         "dropoff_date": "20240629",
+                         "supplier_code": "ZZ",
+                         "currency_code": "EUR"
+                     }
+                 ],
+                 "is_intercompany_ticket": false,
+                 "ticket_departure_date": "20240628"
+             },
+             "traveler_information": {
+                 "traveler_id": "7148650",
+                 "traveler_name_alias": "PSD/TEST MR",
+                 "traveler_emails": [
+                     "pupreti@egencia.com"
+                 ]
+             },
+             "supplier_information": {
+                 "supplier_code": "ZZ",
+                 "supplier_name": "Enterprise"
+             },
+             "custom_data_fields": [
+                 {
+                     "code": "1",
+                     "name": "",
+                     "value": "CC1"
+                 },
+                 {
+                     "code": "2",
+                     "name": "",
+                     "value": ""
+                 },
+                 {
+                     "code": "3",
+                     "name": "",
+                     "value": ""
+                 },
+                 {
+                     "code": "4",
+                     "name": "",
+                     "value": ""
+                 },
+                 {
+                     "code": "5",
+                     "name": "",
+                     "value": ""
+                 },
+                 {
+                     "code": "FREE_TEXT_1",
+                     "name": "",
+                     "value": ""
+                 },
+                 {
+                     "code": "FREE_TEXT_2",
+                     "name": "",
+                     "value": ""
+                 },
+                 {
+                     "code": "FREE_TEXT_3",
+                     "name": "",
+                     "value": ""
+                 }
+             ]
+         },
+         {
+             "billing_line_information": {
+                 "action_type": "ISSUED",
+                 "markup": 0.00,
+                 "product_type": "CAR",
+                 "line_type": "EGENCIA_FEE",
+                 "fee_type": "TRANSACTION",
+                 "merchant_model": "MERCHANT",
+                 "resource_code": "TXCARON",
+                 "resource_for_vendor_calculation": "TXCARON",
+                 "payment_id": ""
+             },
+             "booking_information": {
+                 "booker_id": "7148650",
+                 "supplier_confirmation_number": "MCGWLJ",
+                 "booking_date": "20240628"
+             },
+             "price_information": {
+                 "total_price": {
+                     "amount": "17.00",
+                     "currency_code": "EUR"
+                 },
+                 "base_price": {
+                     "amount": "17.00",
+                     "currency_code": "EUR"
+                 },
+                 "tax_breakdown": [
+                     {
+                         "amount": "0.00",
+                         "currency_code": "EUR",
+                         "rate": "0.00",
+                         "business_posting_group": "NORMAL",
+                         "prod_posting_group": "SANSTVA"
+                     }
+                 ]
+             },
+             "ticket_information": {
+                 "ticket_number": "1108372496C",
+                 "geography_type": "INTERNATIONAL",
+                 "car_segments": [],
+                 "is_intercompany_ticket": false,
+                 "ticket_departure_date": ""
+             },
+             "traveler_information": {
+                 "traveler_id": "7148650",
+                 "traveler_name_alias": "PSD/TEST MR",
+                 "traveler_emails": [
+                     "pupreti@egencia.com"
+                 ]
+             },
+             "supplier_information": {
+                 "supplier_code": "ZZ",
+                 "supplier_name": "Enterprise"
+             },
+             "custom_data_fields": [
+                 {
+                     "code": "1",
+                     "name": "",
+                     "value": "CC1"
+                 },
+                 {
+                     "code": "2",
+                     "name": "",
+                     "value": ""
+                 },
+                 {
+                     "code": "3",
+                     "name": "",
+                     "value": ""
+                 },
+                 {
+                     "code": "4",
+                     "name": "",
+                     "value": ""
+                 },
+                 {
+                     "code": "5",
+                     "name": "",
+                     "value": ""
+                 },
+                 {
+                     "code": "FREE_TEXT_1",
+                     "name": "",
+                     "value": ""
+                 },
+                 {
+                     "code": "FREE_TEXT_2",
+                     "name": "",
+                     "value": ""
+                 },
+                 {
+                     "code": "FREE_TEXT_3",
+                     "name": "",
+                     "value": ""
+                 }
+             ]
+         }
+     ]
+}
+
+
+
+-> Tools & Techniques
+	-> Springboot
+	-> Java21
+	-> H2 dB
+	-> Flyway
+	-> Oauth2 - endpoint security
+	-> Junit
+	-> Resiliency - Fault tolerance handling
+	-> GitHub
+		-> make private repo for each microservices & make the visibility as public
+	-> Ensure Sonar Code Quality standards is followed

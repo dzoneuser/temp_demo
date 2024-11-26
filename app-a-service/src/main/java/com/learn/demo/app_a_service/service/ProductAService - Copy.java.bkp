@@ -1,0 +1,153 @@
+package com.learn.demo.app_a_service.service;
+
+import com.learn.demo.app_a_service.dto.BillingRequest;
+import com.learn.demo.app_a_service.repository.ProductARepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import java.sql.SQLOutput;
+import java.time.Duration;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
+import java.util.concurrent.ExecutionException;
+
+@Service
+public class ProductAService {
+
+    @Autowired
+    private  WebClient webClient; // (zz: why final required as in example)
+    @Autowired
+    private ProductARepository repository;
+
+    @Value("${productB.timeOutInSeconds}")
+    private int timeOutInSeconds;
+
+
+    public String test() {
+        return webClient.get()
+                .uri("productB/test/1")
+                .retrieve()
+                .bodyToMono(String.class)
+               //.timeout(Duration.ofSeconds(timeOutInSeconds))
+              // .block();
+                .block();
+    }
+
+/*    @CircuitBreaker(name = "offersCircuitBreaker", fallbackMethod = "saveBillingFallback")
+    @TimeLimiter(name = "offersTimeLimiter")
+    public CompletionStage<BillingRequest> callExternalApi(BillingRequest billingRequest, String arg) {
+        BillingRequest savedRequest =  repository.save(billingRequest);
+
+        return CompletableFuture.supplyAsync(() -> {
+            // Replace with code that calls the external API
+            // ...
+          //  CompletableFuture<String> resp =  webClient.get()
+            String resp =  webClient.get()
+
+                    .uri("productB/test/"+arg)
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .timeout(Duration.ofSeconds(timeOutInSeconds))
+                    .block();
+
+      *//*      try {
+                  String responseString = resp.get();//todo
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            }*//*
+
+            return savedRequest;//todo add something to it from abv response and then return
+        });
+    }*/
+
+    //refer:https://medium.com/@barbieri.santiago/circuit-breaker-c470a82d7233
+  //  @TimeLimiter(name="productB" , fallbackMethod = "saveBillingFallback")
+  //@TimeLimiter(name = "offersTimeLimiter")
+    @CircuitBreaker(name = "productB", fallbackMethod = "saveBillingFallback")
+    public BillingRequest saveBillingzzz(BillingRequest billingRequest, String arg) {
+        BillingRequest savedRequest =  repository.save(billingRequest);
+
+     CompletableFuture<String> repsonse =  CompletableFuture.supplyAsync(() -> {
+          return  webClient.get()
+                   .uri("productB/test/"+arg)
+                   .retrieve()
+                   .bodyToMono(String.class)
+                   //     .timeout(Duration.ofSeconds(timeOutInSeconds))
+                   .block();
+
+      });
+
+/*
+        try{
+            String resp =  webClient.get()
+                    .uri("productB/test/"+arg)
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    //     .timeout(Duration.ofSeconds(timeOutInSeconds))
+                    .block();
+        }catch (Exception e){
+            System.out.println("zzzzzzzzz"+e.getMessage());
+            e.printStackTrace();
+        }
+*/
+
+
+
+
+        return savedRequest; //zz+ do something with resp ; may add to savedreq
+    }
+
+
+    //refer:https://medium.com/@barbieri.santiago/circuit-breaker-c470a82d7233
+
+
+    @CircuitBreaker(name = "productB", fallbackMethod = "saveBillingFallback")
+//    @TimeLimiter(name = "offersTimeLimiter" )//,fallbackMethod = "saveBillingFallback")
+    public CompletionStage<String> saveBilling(BillingRequest billingRequest, String arg) {
+        BillingRequest savedRequest =  repository.save(billingRequest);
+
+        CompletableFuture<String> response =  CompletableFuture.supplyAsync(() -> {
+            return  webClient.get()
+                    .uri("productB/test/"+arg)
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    //     .timeout(Duration.ofSeconds(timeOutInSeconds))
+                    .block();
+
+        });
+
+
+return response;
+        //return savedRequest; //zz+ do something with resp ; may add to savedreq
+    }
+
+/*    public BillingRequest saveBillingFallback(BillingRequest billingRequest, String arg, Exception exception) {
+
+        System.out.println("circuit breaker Opened! : saveBillingFallback. Exception: "+exception);
+        return new BillingRequest();
+
+    }*/
+
+    public BillingRequest saveBillingFallback(BillingRequest billingRequest, String arg, Throwable exception) {
+
+        System.out.println("circuit breaker Opened! from TimeLimitter : saveBillingFallback. Exception: "+exception);
+        return new BillingRequest();
+
+    }
+
+
+
+
+    public List<BillingRequest> findAll(){
+        return repository.findAll();
+    }
+
+}
